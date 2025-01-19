@@ -1,0 +1,20 @@
+name: Test
+on: [workflow_dispatch]
+
+jobs:
+
+  test:
+    name: Running Tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v1
+
+    - name: Performing a dry-run test
+      uses: ./
+      with:
+        cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        domain_names: ${{ secrets.DOMAIN_NAMES }}
+        email: ${{ secrets.NOTIFICATION_EMAIL }}
+        certs_file_name: my_certs
+        dry_run: true
