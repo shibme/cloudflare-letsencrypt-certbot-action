@@ -24,8 +24,8 @@ jobs:
     - name: Generate LetsEncrypt Cert
       uses: shibme/cloudflare-letsencrypt-certbot-generate@main
       with:
-        cloudflare_dns_api_token: ${{ secrets.CLOUDFLARE_DNS_API_TOKEN }}
-        domain_name: ${{ secrets.DOMAIN_NAME }}
+        cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        domain_names: ${{ secrets.DOMAIN_NAMES }}
         email: ${{ secrets.EMAIL }}
         certs_file_name: my_cert
 ```
