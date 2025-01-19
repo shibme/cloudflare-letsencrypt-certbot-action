@@ -51,4 +51,4 @@ else
 fi
 
 # Compiling certificates and keys to a zip archive
-zip -j -r $CERT_FILE_NAME.zip /etc/letsencrypt/archive/issued_cert/
+zip -j -r $CERT_FILE_NAME /etc/letsencrypt/archive/issued_cert/
