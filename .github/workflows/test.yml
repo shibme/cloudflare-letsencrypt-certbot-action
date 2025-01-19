@@ -16,5 +16,5 @@ jobs:
         cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         domain_names: ${{ secrets.DOMAIN_NAMES }}
         email: ${{ secrets.NOTIFICATION_EMAIL }}
-        certs_file_name: my_certs
+        cert_file_name: my_certs
         dry_run: true

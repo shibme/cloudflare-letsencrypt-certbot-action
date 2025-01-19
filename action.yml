@@ -11,7 +11,7 @@ inputs:
   email:
     description: 'Email address (to notify on certificate expiry)'
     required: true
-  certs_file_name:
+  cert_file_name:
     description: 'The name of the file to which the generated keys and certificates will be stored in zip format [default: cert]'
     required: false
     default: 'cert'
@@ -26,5 +26,5 @@ runs:
     - ${{ inputs.cloudflare_api_token }}
     - ${{ inputs.domain_names }}
     - ${{ inputs.email }}
-    - ${{ inputs.certs_file_name }}
+    - ${{ inputs.cert_file_name }}
     - ${{ inputs.dry_run }}
