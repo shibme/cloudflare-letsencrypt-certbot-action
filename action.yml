@@ -2,19 +2,19 @@ name: 'Cloudflare DNS LetsEncrypt Certificate Generator'
 description: 'Generating LetsEncrypt certificate with DNS challenge for domains parked in Cloudflare'
 author: 'Shibly Meeran'
 inputs:
-  cloudflare_dns_api_token:
-    description: 'Cloudflare DNS API token with Zone:DNS:Edit permission'
+  cloudflare_api_token:
+    description: 'Cloudflare API token with Zone:DNS:Edit permission'
     required: true
-  domain_name:
-    description: 'The fully qualified domain name for which certificate is required'
+  domain_names:
+    description: 'The fully qualified domain names for which certificate is required (comma separated)'
     required: true
   email:
     description: 'Email address (to notify on certificate expiry)'
     required: true
   certs_file_name:
-    description: 'The name of file in which the generated keys and certificates will be stored'
+    description: 'The name of the file to which the generated keys and certificates will be stored in zip format [default: cert]'
     required: false
-    default: 'certs'
+    default: 'cert'
   dry_run:
     description: '[true/false] Will only simulate the process using DNS challenge. Will not issue an actual certificate'
     required: false
@@ -23,8 +23,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.cloudflare_dns_api_token }}
-    - ${{ inputs.domain_name }}
+    - ${{ inputs.cloudflare_api_token }}
+    - ${{ inputs.domain_names }}
     - ${{ inputs.email }}
     - ${{ inputs.certs_file_name }}
     - ${{ inputs.dry_run }}
