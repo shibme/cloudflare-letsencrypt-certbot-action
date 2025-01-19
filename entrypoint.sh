@@ -38,10 +38,17 @@ if [[ $DRY_RUN == "true" ]]; then
     echo "Performing a dry run"
     CERTBOT_COMMAND="$CERTBOT_COMMAND --dry-run"
     echo $CERTBOT_COMMAND | sh
+    # Creating a dummy directory
+    mkdir -p /etc/letsencrypt/archive/issued_cert/
+    echo "mock cert for the domains $DOMAIN_NAME" > /etc/letsencrypt/archive/issued_cert/cert.pem
+    echo "mock key for the domains $DOMAIN_NAME" > /etc/letsencrypt/archive/issued_cert/privkey.pem
+    echo "mock chain for the domains $DOMAIN_NAME" > /etc/letsencrypt/archive/issued_cert/chain.pem
+    echo "mock fullchain for the domains $DOMAIN_NAME" > /etc/letsencrypt/archive/issued_cert/fullchain.pem
 else
     # Requesting for a certificate
     echo "Requesting for certificates"
     echo $CERTBOT_COMMAND | sh
-    # Compiling certificates and keys to a zip archive
-    zip -j -r $CERT_FILE_NAME.zip /etc/letsencrypt/archive/issued_cert/
 fi
+
+# Compiling certificates and keys to a zip archive
+zip -j -r $CERT_FILE_NAME.zip /etc/letsencrypt/archive/issued_cert/
